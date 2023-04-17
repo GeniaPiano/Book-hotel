@@ -1,18 +1,32 @@
 import express from "express";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRouter from "./routes/auth.js";
+import roomsRouter from "./routes/rooms.js";
+import hotelsRouter from "./routes/hotels.js";
+import usersRouter from "./routes/users.js";
+
 
 
 const app = express();
-dotenv.config();
+//dotenv.config();
+
+//MIDDLEWARES
+app.use(express.json());
+
+app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/hotels', hotelsRouter);
+app.use('/api/rooms', roomsRouter);
 
 
+app.get('/', (req, res) => {
+    res.send('<h1>działa!!</h1>')
+})
 
-mongoose.connect('gti restoremongodb://127.0.0.1:27017/booking');
-
-
+mongoose.connect('mongodb://127.0.0.1:27017/booking');
 mongoose.connection.on("connected", () => {
-    console.log("mongoDB connected.")
+   console.log("mongoDB connected.")
 });
 
 
@@ -20,8 +34,9 @@ mongoose.connection.on("connected", () => {
 
 
 
-app.listen(8000, ()=> {
-    console.log("Listening on port http://localhost:8000")
+
+app.listen(8800, ()=> {
+    console.log("Listening on port http://localhost:8800")
 })
 
 
