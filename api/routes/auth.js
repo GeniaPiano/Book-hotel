@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express';
+import {login, register} from './../controllers/auth.js'
+const authRouter = Router();
 
-const authRouter = express.Router();
-
-authRouter.get('/', (req, res) => {
-    res.send("Hello, this is auth endpoint")
-})
+authRouter
+    .post('/register', register)
+    .post('/login', login)
 
 
 
