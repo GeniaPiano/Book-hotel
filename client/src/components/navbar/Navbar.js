@@ -6,7 +6,7 @@ const Navbar = () => {
         <NavbarWrapper>
            <NavbarContainer>
                <NavbarLogo>
-                   Book
+                   Geniabooking
                </NavbarLogo>
                <NavbarBtnWrapper>
                    <NavbarButton> Register </NavbarButton>
