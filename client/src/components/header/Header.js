@@ -121,9 +121,8 @@ const Header = ({type}) => {
                            {openDate && <DateRange
                                editableDateInputs={true}
                                onChange={item => setDate([item.selection])}
-                               moveRangeOnFirstSelection={false}
                                ranges={date}
-                               date={true}
+                               minDate={new Date()}
                            /> }
                        </DateRangeWrapper>
                    </HeaderSearchItem>
