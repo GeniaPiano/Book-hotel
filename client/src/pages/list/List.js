@@ -51,7 +51,7 @@ const List = () => {
                                 {`${format(
                                     date[0].startDate,
                                     "dd/MM/yyyy"
-                                )} to ${format(date[0].endDate, "dd/mm/yyyy")}`}
+                                )} to ${format(date[0].endDate, "dd/MM/yyyy")}`}
                                 <ListDateRangeWrapper>
                                     {openDate && <DateRange
                                         editableDateInputs={true}

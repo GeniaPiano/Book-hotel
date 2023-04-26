@@ -113,8 +113,8 @@ const Header = ({type}) => {
                    <HeaderSearchItem>
                        <FontAwesomeIcon icon={faCalendarDays}  />
                        <HeaderSearchText onClick={() => setOpenDate(!openDate)} >
-                           {`from ${format(date[0].startDate, "dd/mm/yyyy")} to 
-                            ${format(date[0].endDate, "dd/mm/yyyy")}
+                           {`from ${format(date[0].startDate, "dd/MM/yyyy")} to 
+                            ${format(date[0].endDate, "dd/MM/yyyy")}
                            `}
                        </HeaderSearchText>
                        <DateRangeWrapper>

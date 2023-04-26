@@ -1,10 +1,13 @@
 import React from 'react';
 import {
+    PriceSpan, PricesSpanTaxOption,
+    RatingBtn,
+    RatingSpan,
     SearchItemDetails,
     SearchItemImg,
     SearchItemInfo,
-    SearchItemWrapper, SiCancelOption, SiCancelOptionSubtitle,
-    SiDistance, SiFeatures,
+    SearchItemWrapper, SiCancelOption, SiCancelOptionSubtitle, SiDetailsBtn, SiDetailTexts,
+    SiDistance, SiFeatures, SiRatingDiv,
     SiSubtitle,
     SiTaxiOption,
     SiTitle
@@ -25,7 +28,17 @@ const SearchItem = () => {
                 <SiCancelOption> Free cancellation</SiCancelOption>
                 <SiCancelOptionSubtitle> You can cancel later so lock in great price today</SiCancelOptionSubtitle>
             </SearchItemInfo>
-            <SearchItemDetails> Details </SearchItemDetails>
+            <SearchItemDetails>
+                <SiRatingDiv>
+                    <RatingSpan>Excellent</RatingSpan>
+                    <RatingBtn>8.9</RatingBtn>
+                </SiRatingDiv>
+                <SiDetailTexts>
+                    <PriceSpan>155 $</PriceSpan>
+                    <PricesSpanTaxOption> Includes taxes and fees </PricesSpanTaxOption>
+                    <SiDetailsBtn> See Availability </SiDetailsBtn>
+                </SiDetailTexts>
+            </SearchItemDetails>
         </SearchItemWrapper>
     )
 }

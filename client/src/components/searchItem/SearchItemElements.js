@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from "react";
 
 export const  SearchItemWrapper = styled.div`
   border: solid 1px gray;
@@ -59,9 +60,55 @@ export const SiCancelOption = styled.span`
 export const SiCancelOptionSubtitle = styled.span`
   font-size: 12px;
   color: #008009;
-
 `;
 
 export const SearchItemDetails = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between ;
 `;
+
+export const SiRatingDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  
+`;
+
+export const RatingSpan = styled.span`
+  font-weight: 500;
+  padding-top: 18px;
+`;
+
+export const RatingBtn = styled.button`
+  background-color: #003580;
+  color: #fff;
+  padding: 5px;
+  font-weight: bold;
+  border: none;  
+  `;
+
+export const SiDetailTexts = styled.div`
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+`;
+
+export const PriceSpan = styled.span`
+  font-size: 24px;
+  color: gray;
+`;
+
+export const PricesSpanTaxOption = styled.span``;
+
+export const SiDetailsBtn = styled.button`
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  padding: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+`;
+

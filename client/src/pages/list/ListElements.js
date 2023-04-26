@@ -16,10 +16,11 @@ export const ListWrapper = styled.div`
 export const ListSearch = styled.div`
   flex: 1;
   background-color: #febb02;
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   border-radius: 10px;
   position:sticky;
   top: 10px;
+  height: max-content;
   
 `;
 
@@ -34,6 +35,7 @@ export const ListSearchItemDiv = styled.div`
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
+  
   
 `;
 
