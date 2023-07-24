@@ -17,6 +17,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css';
 import SearchItem from "../../components/searchItem/SearchItem";
+import useFetch from "../../hooks/useFetch";
 
 
 
@@ -24,11 +25,28 @@ import SearchItem from "../../components/searchItem/SearchItem";
 
 
 const List = () => {
+
+
     const location = useLocation();
+
     const [openDate, setOpenDate] = useState(false);
     const [destination, setDestination] = useState(location.state.destination);
     const [date, setDate] = useState(location.state.date);
     const [options, setOptions] = useState(location.state.options);
+
+    const [min, setMin] = useState(undefined);
+    const [max, setMax] = useState(undefined);
+
+    const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0 }&max=${max || 999}`)
+
+
+    const handleClick = () => {
+        reFetch();
+    }
+
+
+
+
 
     return (
         <div>
@@ -67,11 +85,15 @@ const List = () => {
                             <LsOptionList>
                                 <LsItem>
                                     <LsOptionText>Min price <small>per night</small></LsOptionText>
-                                    <LsOptionInput type="number" />
+                                    <LsOptionInput
+                                        onChange={(e)=> setMin(e.target.value)}
+                                        type="number" />
                                 </LsItem>
                                 <LsItem>
                                     <LsOptionText>Max price <small>per night</small></LsOptionText>
-                                    <LsOptionInput type="number"/>
+                                    <LsOptionInput
+                                        onChange={(e)=> setMax(e.target.value)}
+                                        type="number"/>
                                 </LsItem>
                                 <LsItem>
                                     <LsOptionText>Adult</LsOptionText>
@@ -87,21 +109,16 @@ const List = () => {
                                 </LsItem>
                             </LsOptionList>
                         </ListSearchItemDiv>
-                        <ListSearchButton>Search</ListSearchButton>
+                        <ListSearchButton onClick={handleClick}>Search</ListSearchButton>
                     </ListSearch>
                     <ListResult>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
-                        <SearchItem/>
+                        { loading ? "Loading" : <>
+                            {data.map(hotel=> (
+                                <SearchItem hotel={hotel} key={hotel._id}/>
+                               ))}
+
+
+                        </>}
                     </ListResult>
 
 

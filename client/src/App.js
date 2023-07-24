@@ -7,7 +7,6 @@ import {GlobalStyle} from "./assets/styles/GlobalStyle";
 
 
 
-
 const App = () => {
   return (
       <>

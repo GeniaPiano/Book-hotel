@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React from "react";
+import { Link } from 'react-router-dom';
+
 
 export const  SearchItemWrapper = styled.div`
   border: solid 1px gray;
@@ -103,7 +104,7 @@ export const PriceSpan = styled.span`
 
 export const PricesSpanTaxOption = styled.span``;
 
-export const SiDetailsBtn = styled.button`
+export const SiDetailsBtn = styled(Link)`
   background-color: #0071c2;
   color: #fff;
   border: none;

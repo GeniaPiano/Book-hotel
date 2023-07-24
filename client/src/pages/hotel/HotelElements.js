@@ -8,6 +8,7 @@ export const HotelContainer= styled.div`
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 30px;
+  
  
 `;
 
@@ -124,8 +125,8 @@ export const HotelDetailsPrice = styled.div`
 
 export const HotelSlider = styled.div`
   position: sticky;
-  top: 0;
-  width: 100vh;
+  top: 20px;
+  width: 90%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 3;

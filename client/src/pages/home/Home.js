@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import {HomeContainer, HomeTitle} from "./HomeElements";
 import Featured from "../../components/featured/Featured";
 import PropertyList from "../../components/propertyList/PropertyList";
-import FeaturedProperties from "../../featuredProperties/FeaturedProperties";
+import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 

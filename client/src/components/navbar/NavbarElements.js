@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 export const NavbarWrapper = styled.div`
   height: 50px;
@@ -17,7 +18,9 @@ export const NavbarContainer = styled.div`
   padding: 0 20px;
 `;
 
-export const NavbarLogo = styled.span`
+export const NavbarLogo = styled(Link)`
+    text-decoration: none;
+    color: #fff;
     font-weight: 500;
 `;
 

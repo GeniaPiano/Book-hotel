@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -28,6 +28,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBed, faPlane, faCar, faTaxi, faLandmark, faCalendarDays, faPerson} from "@fortawesome/free-solid-svg-icons";
 import {format} from "date-fns";
 import {useNavigate} from "react-router-dom";
+import {SearchContext} from "../../context/SearchContext";
 
 
 
@@ -56,6 +57,8 @@ const Header = ({type}) => {
           [name]: operation === 'plus' ? options[name]++ : options[name]--
       }})
     }
+
+    const {dispatch} = useContext(SearchContext)
 
 
     const handleSearch = () => {

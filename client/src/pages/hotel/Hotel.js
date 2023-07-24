@@ -22,13 +22,24 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleLeft, faCircleRight, faCircleXmark, faLocation} from "@fortawesome/free-solid-svg-icons";
-import {photos} from "./photos"
+// import {photos} from "./photos"
 import MailList from "../../components/mailList/MailList";
+import useFetch from "../../hooks/useFetch";
+import {useLocation} from "react-router-dom";
 
 const Hotel = () => {
 
+    const location = useLocation();
+    const id = location.pathname.split('/')[2]
+    console.log(id)
+
+
     const [sliderNumber, setSliderNumber] = useState(0);
     const [open, setOpen] = useState(false);
+
+    const {data, error, loading} = useFetch(`/hotels/find/${id}`)
+    console.log(data)
+
     const handleOpen = (i) => {
         setSliderNumber(i);
         setOpen(true)
@@ -37,9 +48,9 @@ const Hotel = () => {
 
         let newSliderNum;
         if (direction === 'left') {
-            newSliderNum = sliderNumber === 0 ? photos.length - 1 : sliderNumber - 1
+            newSliderNum = sliderNumber === 0 ? data.photos.length - 1 : sliderNumber - 1
         } else {
-            newSliderNum = sliderNumber === photos.length - 5 ? 0 : sliderNumber + 1
+            newSliderNum = sliderNumber === data.photos.length - 5 ? 0 : sliderNumber + 1
         }
 
         setSliderNumber(newSliderNum);
@@ -65,7 +76,9 @@ const Hotel = () => {
         <div>
            <Navbar/>
            <Header type="list"/>
-           <HotelContainer>
+            {loading ? (
+                "loading, please wait..."
+            ) :  (<HotelContainer>
                {open &&  (<HotelSlider>
                                <IconWrapper>
                                    <FontAwesomeIcon
@@ -78,7 +91,7 @@ const Hotel = () => {
                                        icon={faCircleLeft} />
                                </IconArrowWrapper>
                                <SliderWrapper>
-                                   <SliderImg src={photos[sliderNumber].src}/>
+                                   <SliderImg src={data.photos[sliderNumber]}/>
                                </SliderWrapper>
                                <IconArrowWrapper>
                                    <FontAwesomeIcon
@@ -88,40 +101,30 @@ const Hotel = () => {
                </HotelSlider>) }
                <HotelWrapper>
                    <HotelBookBtn>Reserve or Book now</HotelBookBtn>
-                   <HotelTitle> Aparthotel Stare Miasto</HotelTitle>
+                   <HotelTitle>{data.name}</HotelTitle>
                    <HotelAddressDiv>
                        <FontAwesomeIcon icon={faLocation}/>
-                       <HotelAddress> Gołębia 2, Stare Miasto, 31-007 Kraków, Polska</HotelAddress>
+                       <HotelAddress> {data.address} </HotelAddress>
                    </HotelAddressDiv>
                    <HotelDistance>
-                       Excellent location 500m from center
+                       Excellent location {data.distance} from center
                    </HotelDistance>
                    <HotelPriceHighLight>
                        Book a stay over 115$ at this property and get a free airport taxi
                    </HotelPriceHighLight>
                    <HotelImages>
-                       { photos.map((photo, i) => (
+                       { data.photos?.map((photo, i) => (
                            <HotelImgWrapper>
-                               <HotelImg onClick={()=> handleOpen(i)} src={photo.src} alt="photo from booking.com"/>
+                               <HotelImg onClick={()=> handleOpen(i)} src={photo} alt="photo from booking.com"/>
                            </HotelImgWrapper>
                        ))}
                    </HotelImages>
+
+                   {/*  DETAILS PRICE  */}
                    <HotelDetails>
                        <HotelDetailsTexts>
-                           <HotelDetailsTitle> Stay in the heart of Krakow </HotelDetailsTitle>
-                           <HotelPara>
-                               You are entitled to a Genius discount at the Aparthotel Stare Miasto! All you have to do to save money at this property is log in.
-
-                               Aparthotel Stare Miasto is located in the heart of Kraków's Old Town, just 120 meters from the Main Market Square. It offers spacious, modern apartments with free Wi-Fi.
-                               Aparthotel Stare Miasto is housed in a historic building. It is decorated with brick walls and wooden elements.
-
-                               All apartments at Aparthotel Stare Miasto are air conditioned and feature an LCD TV. Each has a fully equipped kitchenette with a fridge and an electric kettle. Guests can purchase tickets and obtain tourist information at the 24-hour reception.
-
-                               Aparthotel Stare Miasto is 900 meters from the Wawel Castle. There are many restaurants and cafés in the area. Kraków Główny Railway Station and Galeria Krakowska Shopping Center are just 1.6 km away.
-
-                               This is our guests' favorite part of Krakow, according to independent reviews.
-
-                           </HotelPara>
+                           <HotelDetailsTitle> {data.title} </HotelDetailsTitle>
+                           <HotelPara> {data.desc} </HotelPara>
                        </HotelDetailsTexts>
                        <HotelDetailsPrice>
                            <h1>Perfect for 9-night stay!</h1>
@@ -134,6 +137,7 @@ const Hotel = () => {
                    </HotelDetails>
                </HotelWrapper>
            </HotelContainer>
+            )}
 
             <MailList/>
             <Footer/>

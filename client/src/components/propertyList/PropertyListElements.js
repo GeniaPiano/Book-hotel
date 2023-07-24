@@ -25,6 +25,7 @@ export const PropertyListTitles = styled.div``;
 
 export const PropertyListH1 = styled.h1`
   font-size: 18px;
+  text-transform: capitalize;
   
 `;
 
