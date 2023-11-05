@@ -43,12 +43,6 @@ mongoose.connection.on("connected", () => {
    console.log("mongoDB connected.")
 });
 
-
-
-
-
-
-
 app.listen(8800, ()=> {
     console.log("Listening on port http://localhost:8800")
 })
